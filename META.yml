@@ -1,0 +1,42 @@
+---
+abstract: 'List all modules and versions loaded if tests fail'
+author:
+  - 'David Golden <dagolden@cpan.org>'
+build_requires:
+  Capture::Tiny: 0.23
+  ExtUtils::MakeMaker: 0
+  File::Spec::Functions: 0
+  List::Util: 0
+  Test::More: 0.96
+  version: 0
+configure_requires:
+  ExtUtils::MakeMaker: 6.17
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.012, CPAN::Meta::Converter version 2.133380'
+license: apache
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Test-DiagINC
+no_index:
+  directory:
+    - t
+    - xt
+    - examples
+    - corpus
+  package:
+    - DB
+provides:
+  Test::DiagINC:
+    file: lib/Test/DiagINC.pm
+    version: 0.001
+requires:
+  perl: 5.008001
+  strict: 0
+  warnings: 0
+resources:
+  bugtracker: https://github.com/dagolden/Test-DiagINC/issues
+  homepage: https://github.com/dagolden/Test-DiagINC
+  repository: https://github.com/dagolden/Test-DiagINC.git
+version: 0.001
+x_authority: cpan:DAGOLDEN

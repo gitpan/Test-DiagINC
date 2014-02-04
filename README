@@ -1,0 +1,80 @@
+NAME
+    Test::DiagINC - List all modules and versions loaded if tests fail
+
+VERSION
+    version 0.001
+
+SYNOPSIS
+        # Load *BEFORE* Test::More
+        use if $ENV{AUTOMATED_TESTING}, 'Test::DiagINC';
+        use Test::More;
+
+DESCRIPTION
+    Assuming you shipped your module to CPAN with working tests, test
+    failures from CPAN Testers <http://www.cpantesters.org/> might be due to
+    platform issues, Perl version issues or problems with dependencies. This
+    module helps you diagnose deep dependency problems by showing you
+    exactly what modules and versions were loaded during a test run.
+
+    When this module is loaded, it sets up an "END" block that will take
+    action if a program exits with a non-zero exit code. If that happens,
+    this module prints out the names and version numbers of all modules
+    appearing in %INC at the end of the test.
+
+    For example:
+
+        $ perl -MTest::DiagINC -MTest::More -e 'fail("meh"); done_testing'
+        not ok 1 - meh
+        #   Failed test 'meh'
+        #   at -e line 1.
+        1..1
+        # Looks like you failed 1 test of 1.
+        # Listing modules and versions from %INC
+        #   5.018002 Config
+        #       5.68 Exporter
+        #       5.68 Exporter::Heavy
+        #       1.07 PerlIO
+        #   1.001002 Test::Builder
+        #   1.001002 Test::Builder::Module
+        #      0.001 Test::DiagINC
+        #   1.001002 Test::More
+        #       1.22 overload
+        #       0.02 overloading
+        #       1.07 strict
+        #       1.03 vars
+        #       1.18 warnings
+        #       1.02 warnings::register
+
+    NOTE: Because this module uses an "END" block, it must be loaded before
+    "Test::More" so that the "Test::More"'s "END" block has a chance to set
+    the exit code first. If you're not using "Test::More", then it's up to
+    you to ensure your code generates the non-zero exit code (e.g. "die()"
+    or exit(1)).
+
+    If "Test::More" is loaded, the output will go via the "diag" function.
+    Otherwise, it will just be sent to STDERR.
+
+SUPPORT
+  Bugs / Feature Requests
+    Please report any bugs or feature requests through the issue tracker at
+    <https://github.com/dagolden/Test-DiagINC/issues>. You will be notified
+    automatically of any progress on your issue.
+
+  Source Code
+    This is open source software. The code repository is available for
+    public review and contribution under the terms of the license.
+
+    <https://github.com/dagolden/Test-DiagINC>
+
+      git clone https://github.com/dagolden/Test-DiagINC.git
+
+AUTHOR
+    David Golden <dagolden@cpan.org>
+
+COPYRIGHT AND LICENSE
+    This software is Copyright (c) 2014 by David Golden.
+
+    This is free software, licensed under:
+
+      The Apache License, Version 2.0, January 2004
+
