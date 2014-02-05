@@ -11,6 +11,7 @@ cpanfile
 dist.ini
 examples/dies.t
 examples/fails.t
+examples/lib/Foo.pm
 lib/Test/DiagINC.pm
 perlcritic.rc
 t/00-report-prereqs.t

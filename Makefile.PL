@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker 6.17;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "List all modules and versions loaded if tests fail",
+  "ABSTRACT" => "List modules and versions loaded if tests fail",
   "AUTHOR" => "David Golden <dagolden\@cpan.org>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
@@ -21,6 +21,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "apache",
   "NAME" => "Test::DiagINC",
   "PREREQ_PM" => {
+    "Path::Tiny" => 0,
     "strict" => 0,
     "warnings" => 0
   },
@@ -32,7 +33,7 @@ my %WriteMakefileArgs = (
     "Test::More" => "0.96",
     "version" => 0
   },
-  "VERSION" => "0.001",
+  "VERSION" => "0.002",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -44,6 +45,7 @@ my %FallbackPrereqs = (
   "ExtUtils::MakeMaker" => 0,
   "File::Spec::Functions" => 0,
   "List::Util" => 0,
+  "Path::Tiny" => 0,
   "Test::More" => "0.96",
   "strict" => 0,
   "version" => 0,

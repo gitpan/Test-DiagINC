@@ -1,8 +1,8 @@
 NAME
-    Test::DiagINC - List all modules and versions loaded if tests fail
+    Test::DiagINC - List modules and versions loaded if tests fail
 
 VERSION
-    version 0.001
+    version 0.002
 
 SYNOPSIS
         # Load *BEFORE* Test::More
@@ -18,8 +18,8 @@ DESCRIPTION
 
     When this module is loaded, it sets up an "END" block that will take
     action if a program exits with a non-zero exit code. If that happens,
-    this module prints out the names and version numbers of all modules
-    appearing in %INC at the end of the test.
+    this module prints out the names and version numbers of non-local
+    modules appearing in %INC at the end of the test.
 
     For example:
 
@@ -50,6 +50,14 @@ DESCRIPTION
     the exit code first. If you're not using "Test::More", then it's up to
     you to ensure your code generates the non-zero exit code (e.g. "die()"
     or exit(1)).
+
+    Modules that appear to be sourced from below the current directory when
+    "Test::DiagINC" was loaded will be excluded from the report (e.g.
+    excludes local modules from "lib/", "t/lib", and so on).
+
+    The heuristic of searching %INC for loaded modules may fail if the
+    module path loaded does not map to a package within the module file or
+    if that package does not define a $VERSION.
 
     If "Test::More" is loaded, the output will go via the "diag" function.
     Otherwise, it will just be sent to STDERR.

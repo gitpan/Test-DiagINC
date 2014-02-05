@@ -65,6 +65,7 @@ my $static_prereqs = do { my $x = {
                     },
        'runtime' => {
                       'requires' => {
+                                      'Path::Tiny' => '0',
                                       'perl' => '5.008001',
                                       'strict' => '0',
                                       'warnings' => '0'

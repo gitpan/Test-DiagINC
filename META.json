@@ -1,5 +1,5 @@
 {
-   "abstract" : "List all modules and versions loaded if tests fail",
+   "abstract" : "List modules and versions loaded if tests fail",
    "author" : [
       "David Golden <dagolden@cpan.org>"
    ],
@@ -47,6 +47,7 @@
       },
       "runtime" : {
          "requires" : {
+            "Path::Tiny" : "0",
             "perl" : "5.008001",
             "strict" : "0",
             "warnings" : "0"
@@ -70,7 +71,7 @@
    "provides" : {
       "Test::DiagINC" : {
          "file" : "lib/Test/DiagINC.pm",
-         "version" : "0.001"
+         "version" : "0.002"
       }
    },
    "release_status" : "stable",
@@ -85,7 +86,7 @@
          "web" : "https://github.com/dagolden/Test-DiagINC"
       }
    },
-   "version" : "0.001",
+   "version" : "0.002",
    "x_authority" : "cpan:DAGOLDEN"
 }
 

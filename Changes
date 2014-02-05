@@ -1,5 +1,12 @@
 Revision history for Test-DiagINC
 
+0.002     2014-02-04 22:17:58-05:00 America/New_York
+
+    [CHANGED]
+
+    - Will not report modules loaded from below the current directory
+      (suggested by Peter Rabbitson)
+
 0.001     2014-02-04 15:12:52-05:00 America/New_York
 
     - First release

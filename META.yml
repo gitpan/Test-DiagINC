@@ -1,5 +1,5 @@
 ---
-abstract: 'List all modules and versions loaded if tests fail'
+abstract: 'List modules and versions loaded if tests fail'
 author:
   - 'David Golden <dagolden@cpan.org>'
 build_requires:
@@ -29,8 +29,9 @@ no_index:
 provides:
   Test::DiagINC:
     file: lib/Test/DiagINC.pm
-    version: 0.001
+    version: 0.002
 requires:
+  Path::Tiny: 0
   perl: 5.008001
   strict: 0
   warnings: 0
@@ -38,5 +39,5 @@ resources:
   bugtracker: https://github.com/dagolden/Test-DiagINC/issues
   homepage: https://github.com/dagolden/Test-DiagINC
   repository: https://github.com/dagolden/Test-DiagINC.git
-version: 0.001
+version: 0.002
 x_authority: cpan:DAGOLDEN
