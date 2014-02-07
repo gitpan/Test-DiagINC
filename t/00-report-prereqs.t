@@ -65,8 +65,10 @@ my $static_prereqs = do { my $x = {
                     },
        'runtime' => {
                       'requires' => {
-                                      'Path::Tiny' => '0',
-                                      'perl' => '5.008001',
+                                      'B' => '0',
+                                      'Cwd' => '0',
+                                      'File::Spec' => '0',
+                                      'perl' => '5.006',
                                       'strict' => '0',
                                       'warnings' => '0'
                                     }
@@ -77,11 +79,11 @@ my $static_prereqs = do { my $x = {
                                      'CPAN::Meta::Requirements' => '2.120900'
                                    },
                    'requires' => {
-                                   'Capture::Tiny' => '0.23',
+                                   'Capture::Tiny' => '0.21',
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec::Functions' => '0',
                                    'List::Util' => '0',
-                                   'Test::More' => '0.96',
+                                   'Test::More' => '0',
                                    'version' => '0'
                                  }
                  }

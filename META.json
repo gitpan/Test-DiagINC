@@ -47,8 +47,10 @@
       },
       "runtime" : {
          "requires" : {
-            "Path::Tiny" : "0",
-            "perl" : "5.008001",
+            "B" : "0",
+            "Cwd" : "0",
+            "File::Spec" : "0",
+            "perl" : "5.006",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -59,11 +61,11 @@
             "CPAN::Meta::Requirements" : "2.120900"
          },
          "requires" : {
-            "Capture::Tiny" : "0.23",
+            "Capture::Tiny" : "0.21",
             "ExtUtils::MakeMaker" : "0",
             "File::Spec::Functions" : "0",
             "List::Util" : "0",
-            "Test::More" : "0.96",
+            "Test::More" : "0",
             "version" : "0"
          }
       }
@@ -71,7 +73,7 @@
    "provides" : {
       "Test::DiagINC" : {
          "file" : "lib/Test/DiagINC.pm",
-         "version" : "0.002"
+         "version" : "0.003"
       }
    },
    "release_status" : "stable",
@@ -86,7 +88,10 @@
          "web" : "https://github.com/dagolden/Test-DiagINC"
       }
    },
-   "version" : "0.002",
-   "x_authority" : "cpan:DAGOLDEN"
+   "version" : "0.003",
+   "x_authority" : "cpan:DAGOLDEN",
+   "x_contributors" : [
+      "Peter Rabbitson <ribasushi@cpan.org>"
+   ]
 }
 

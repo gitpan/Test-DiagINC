@@ -11,11 +11,16 @@ cpanfile
 dist.ini
 examples/dies.t
 examples/fails.t
+examples/fails_in_end.t
 examples/lib/Foo.pm
+examples/lib/SyntaxErr.pm
 lib/Test/DiagINC.pm
 perlcritic.rc
 t/00-report-prereqs.t
 t/basic.t
+t/leanload.t
+t/lib/B_laced_INC_dump.pm
+t/taint.t
 tidyall.ini
 xt/author/00-compile.t
 xt/author/critic.t

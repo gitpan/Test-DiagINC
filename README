@@ -2,10 +2,10 @@ NAME
     Test::DiagINC - List modules and versions loaded if tests fail
 
 VERSION
-    version 0.002
+    version 0.003
 
 SYNOPSIS
-        # Load *BEFORE* Test::More
+        # preferably load before anything else
         use if $ENV{AUTOMATED_TESTING}, 'Test::DiagINC';
         use Test::More;
 
@@ -17,9 +17,10 @@ DESCRIPTION
     exactly what modules and versions were loaded during a test run.
 
     When this module is loaded, it sets up an "END" block that will take
-    action if a program exits with a non-zero exit code. If that happens,
-    this module prints out the names and version numbers of non-local
-    modules appearing in %INC at the end of the test.
+    action if the program is about to exit with a non-zero exit code or if
+    $test_builder->is_passing is false by the time the "END" block is
+    reached. If that happens, this module prints out the names and version
+    numbers of non-local modules appearing in %INC at the end of the test.
 
     For example:
 
@@ -34,10 +35,10 @@ DESCRIPTION
         #       5.68 Exporter
         #       5.68 Exporter::Heavy
         #       1.07 PerlIO
-        #   1.001002 Test::Builder
-        #   1.001002 Test::Builder::Module
-        #      0.001 Test::DiagINC
-        #   1.001002 Test::More
+        #       0.98 Test::Builder
+        #       0.98 Test::Builder::Module
+        #      0.003 Test::DiagINC
+        #       0.98 Test::More
         #       1.22 overload
         #       0.02 overloading
         #       1.07 strict
@@ -45,19 +46,32 @@ DESCRIPTION
         #       1.18 warnings
         #       1.02 warnings::register
 
-    NOTE: Because this module uses an "END" block, it must be loaded before
-    "Test::More" so that the "Test::More"'s "END" block has a chance to set
-    the exit code first. If you're not using "Test::More", then it's up to
-    you to ensure your code generates the non-zero exit code (e.g. "die()"
-    or exit(1)).
+    This module deliberately does not load any other modules during runtime,
+    instead delaying all loads until it needs to generate a failure report
+    in its "END" block. The only exception is loading strict and warnings
+    for self-check if and only if "RELEASE_TESTING" is true. Therefore an
+    empty invocation will look like this:
+
+        $ perl -MTest::DiagINC -e 'exit(1)'
+        # Listing modules from %INC
+        #  0.003 Test::DiagINC
+
+    NOTE: Because this module uses an "END" block, it is a good idea to load
+    it as early as possible, so the "END" block it installs will execute as
+    late as possible (see perlmod for details on how this works). While this
+    module does employ some cleverness to work around load order, it is
+    still a heuristic and is no substitute to loading this module early. A
+    notable side-effect is when a module is loaded in an "END" block
+    executing after the one installed by this library: such modules will be
+    "invisible" to us and will not be reported as part of the diagnostic
+    report.
 
     Modules that appear to be sourced from below the current directory when
     "Test::DiagINC" was loaded will be excluded from the report (e.g.
-    excludes local modules from "lib/", "t/lib", and so on).
+    excludes local modules from "./", "lib/", "t/lib", and so on).
 
     The heuristic of searching %INC for loaded modules may fail if the
-    module path loaded does not map to a package within the module file or
-    if that package does not define a $VERSION.
+    module path loaded does not map to a package within the module file.
 
     If "Test::More" is loaded, the output will go via the "diag" function.
     Otherwise, it will just be sent to STDERR.
@@ -78,6 +92,9 @@ SUPPORT
 
 AUTHOR
     David Golden <dagolden@cpan.org>
+
+CONTRIBUTOR
+    Peter Rabbitson <ribasushi@cpan.org>
 
 COPYRIGHT AND LICENSE
     This software is Copyright (c) 2014 by David Golden.

@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use 5.008001;
+use 5.006;
 
 use ExtUtils::MakeMaker 6.17;
 
@@ -21,19 +21,21 @@ my %WriteMakefileArgs = (
   "LICENSE" => "apache",
   "NAME" => "Test::DiagINC",
   "PREREQ_PM" => {
-    "Path::Tiny" => 0,
+    "B" => 0,
+    "Cwd" => 0,
+    "File::Spec" => 0,
     "strict" => 0,
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
-    "Capture::Tiny" => "0.23",
+    "Capture::Tiny" => "0.21",
     "ExtUtils::MakeMaker" => 0,
     "File::Spec::Functions" => 0,
     "List::Util" => 0,
-    "Test::More" => "0.96",
+    "Test::More" => 0,
     "version" => 0
   },
-  "VERSION" => "0.002",
+  "VERSION" => "0.003",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -41,12 +43,14 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "Capture::Tiny" => "0.23",
+  "B" => 0,
+  "Capture::Tiny" => "0.21",
+  "Cwd" => 0,
   "ExtUtils::MakeMaker" => 0,
+  "File::Spec" => 0,
   "File::Spec::Functions" => 0,
   "List::Util" => 0,
-  "Path::Tiny" => 0,
-  "Test::More" => "0.96",
+  "Test::More" => 0,
   "strict" => 0,
   "version" => 0,
   "warnings" => 0

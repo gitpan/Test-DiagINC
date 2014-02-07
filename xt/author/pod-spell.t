@@ -13,6 +13,9 @@ __DATA__
 David
 Golden
 dagolden
+Peter
+Rabbitson
+ribasushi
 lib
 Test
 DiagINC
