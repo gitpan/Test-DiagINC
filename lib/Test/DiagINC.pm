@@ -2,7 +2,7 @@ use 5.006;
 
 package Test::DiagINC;
 # ABSTRACT: List modules and versions loaded if tests fail
-our $VERSION = '0.003'; # VERSION
+our $VERSION = '0.004'; # VERSION
 
 # If the tested module did not load strict/warnings we do not want
 # to load them either. On the other hand we would like to know our
@@ -23,9 +23,14 @@ sub _max_length {
 
 # Get our CWD *without* loading anything. Original idea by xdg++
 # ribasushi thinks this is fragile and will break sooner rather than
-# later, but adding it as is because haarg and xdg both claim it's fine
+# later, but adding it as is because haarg and xdg both claim it's fine.
+# Requires %ENV cleanup to work under taint mode
 my $REALPATH_CWD = do {
     local $ENV{PATH};
+    local $ENV{IFS};
+    local $ENV{CDPATH};
+    local $ENV{ENV};
+    local $ENV{BASH_ENV};
     my ($perl) = $^X =~ /(.+)/; # $^X is internal how could it be tainted?!
     `"$perl" -MCwd -le "print getcwd"`;
 };
@@ -155,7 +160,7 @@ Test::DiagINC - List modules and versions loaded if tests fail
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 

@@ -1,5 +1,11 @@
 Revision history for Test-DiagINC
 
+0.004     2014-02-10 13:02:39-05:00 America/New_York
+
+    [FIXED]
+
+    - Localizes more %ENV vars to work under taint mode
+
 0.003     2014-02-07 12:54:54-05:00 America/New_York
 
     [CHANGED]
